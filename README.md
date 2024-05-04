@@ -29,6 +29,13 @@ XYZ E-Commerce App is a mobile application designed to provide users with a seam
 - Make sure you have Flutter installed. If not, follow the instructions [here](https://flutter.dev/docs/get-started/install).
 - Ensure that your preferred IDE or code editor (such as Visual Studio Code) is set up for Flutter development.
 
+## Example Screenshots
+
+![Screenshot 1](assets/screenshot/Screenshot_1.png)
+![Screenshot 2](assets/screenshot/Screenshot_2.png)
+![Screenshot 3](assets/screenshot/Screenshot_3.png)
+![Screenshot 4](assets/screenshot/Screenshot_4.png)
+
 ### Installation
 
 1. Clone this repository to your local machine:
