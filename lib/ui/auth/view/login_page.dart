@@ -1,3 +1,4 @@
+import 'package:ecom_shop/helper/constatnts.dart';
 import 'package:ecom_shop/ui/auth/viewmodels/user_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,16 +19,8 @@ class _LoginPageState extends State<LoginPage> {
     return ElevatedButton(
         child: const Text("LOGIN"),
         onPressed: () async {
-          // your login funtion invoke here
-
-          // set userinfo if sucess login.
-          // this will rebuild the consumer in main.dart
-          // and navigate to homescreen
-          //userViewModel.setUser(youruserinfo);
-
-          // then save the user info
           final preferences = await SharedPreferences.getInstance();
-          await preferences.setString('userInfo', "userData");
+          await preferences.setString(SP_USER_INFO, "userData");
         });
   }
 }

@@ -13,8 +13,8 @@ class UserViewModel extends ChangeNotifier {
   bool _displayedOnboard = false;
   bool get displayedOnboard => _displayedOnboard;
 
-  User? _user;
-  User? get user => _user;
+  UserModel? _user;
+  UserModel? get user => _user;
 
   void logout() {
     _user = null;
@@ -23,11 +23,7 @@ class UserViewModel extends ChangeNotifier {
 
   bool get isAuthorized {
     if (_user != null) {
-      if (_user!.apiToken != null) {
-        return _user!.apiToken!.isNotEmpty;
-      } else {
-        return false;
-      }
+      return _user!.accessToken.isNotEmpty;
     } else {
       return false;
     }
@@ -50,8 +46,10 @@ class UserViewModel extends ChangeNotifier {
       final preferences = await SharedPreferences.getInstance();
 
       _user = await _getUserUseCase.login(userModel);
-
-      preferences.setBool(SP_SHOW_ON_BOARD, _user != null);
+      if (_user != null) {
+        preferences.setBool(SP_SHOW_ON_BOARD, true);
+        preferences.setString(SP_USER_INFO, userModelToJson(_user!));
+      }
 
       notifyListeners();
     } catch (e) {

@@ -9,14 +9,12 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this.__userApi);
 
   @override
-  Future<User> login(UserLoginModel userLoginModel) async {
+  Future<UserModel> login(UserLoginModel userLoginModel) async {
     try {
       final response = await __userApi.login(userLoginModel);
-      // Parse response and return user
-      return User(
-          id: response.data['id'],
-          name: response.data['name'],
-          apiToken: response.data['token']);
+      final json = response.data!;
+
+      return UserModel.fromJson(json);
     } catch (e) {
       throw Exception('Failed to fetch user: $e');
     }

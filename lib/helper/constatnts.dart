@@ -6,3 +6,4 @@ const LOGIN_API = '/api/v2/auth/login';
 
 //SharedPrefrences constants
 const SP_SHOW_ON_BOARD = 'showOnboard';
+const SP_USER_INFO = 'userInfo';
