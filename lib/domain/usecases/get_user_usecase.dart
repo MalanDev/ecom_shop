@@ -8,7 +8,7 @@ class GetUserUseCase {
 
   GetUserUseCase(this._userRepository);
 
-  Future<User> login(UserLoginModel userLoginModel) {
+  Future<UserModel> login(UserLoginModel userLoginModel) {
     return _userRepository.login(userLoginModel);
   }
 }

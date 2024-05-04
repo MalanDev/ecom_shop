@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:ecom_shop/helper/constatnts.dart';
+import 'package:ecom_shop/config/constatnts.dart';
 import 'token_interceptor.dart';
 
 class ApiHelper {
   static String? refreshToken = "";
   static final Dio _client = Dio(
     BaseOptions(
-      baseUrl: BASE_URL,
+      baseUrl: AppConstatnts.BASE_URL,
       connectTimeout: const Duration(seconds: 5),
       receiveTimeout: const Duration(seconds: 3),
       headers: {

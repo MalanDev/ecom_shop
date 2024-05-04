@@ -18,8 +18,8 @@ class UserScreen extends StatelessWidget {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('User ID: ${userViewModel.user!.id}'),
-                  Text('User Name: ${userViewModel.user!.name}'),
+                  Text('User ID: ${userViewModel.user!.user.id}'),
+                  Text('User Name: ${userViewModel.user!.user.lastName}'),
                 ],
               )
             : const CircularProgressIndicator(),
