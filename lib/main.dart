@@ -4,6 +4,8 @@ import 'package:ecom_shop/domain/usecases/get_user_usecase.dart';
 import 'package:ecom_shop/ui/auth/view/sign_in_screen.dart';
 import 'package:ecom_shop/ui/auth/view/user_screen.dart';
 import 'package:ecom_shop/ui/auth/viewmodels/user_viewmodel.dart';
+import 'package:ecom_shop/ui/home/home_screen.dart';
+import 'package:ecom_shop/ui/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

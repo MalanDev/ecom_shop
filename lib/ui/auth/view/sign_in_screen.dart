@@ -1,5 +1,7 @@
 import 'package:ecom_shop/config/assets_manager.dart';
+import 'package:ecom_shop/config/color_manager.dart';
 import 'package:ecom_shop/config/constatnts.dart';
+import 'package:ecom_shop/config/font_manager.dart';
 import 'package:ecom_shop/config/styles_manager.dart';
 import 'package:ecom_shop/config/values_manager.dart';
 import 'package:ecom_shop/ui/auth/view/sign_up_screen.dart';
@@ -66,6 +68,19 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
 
               const SizedBox(height: AppMargin.m28),
+
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(
+                  vertical: AppPadding.p16,
+                ),
+                child: Text(
+                  "Welcome to E-Com Shop!",
+                  style: getBoldStyle(fontSize: FontSize.s20).apply(
+                    color: AppColorManager.primary,
+                  ),
+                ),
+              ),
               // Email Field
               TextFormField(
                 controller: txtEmail,

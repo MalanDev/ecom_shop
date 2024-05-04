@@ -1,10 +1,11 @@
+import 'package:ecom_shop/data/service/location_service.dart';
 import 'package:ecom_shop/ui/home/widget/account_page.dart';
 import 'package:ecom_shop/ui/home/widget/chat_page.dart';
 import 'package:ecom_shop/ui/home/widget/explore_page.dart';
 import 'package:ecom_shop/ui/home/widget/home_page.dart';
 import 'package:ecom_shop/ui/home/widget/purchased_page.dart';
 import 'package:flutter/material.dart';
-
+import 'package:geolocator/geolocator.dart';
 import '../../config/constatnts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -24,6 +25,24 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   int _selectedIndex = 0;
+
+  _onSelectedPage(int page) {
+    setState(() {
+      _selectedIndex = page;
+    });
+  }
+
+  //get location from geolocator
+  _getCurrentLocation() async {
+    Position location = await determinePosition();
+    debugPrint("Latitude:${location.latitude}");
+  }
+
+  @override
+  void initState() {
+    _getCurrentLocation();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +77,5 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: _onSelectedPage,
       ),
     );
-  }
-
-  _onSelectedPage(int page) {
-    setState(() {
-      _selectedIndex = page;
-    });
   }
 }

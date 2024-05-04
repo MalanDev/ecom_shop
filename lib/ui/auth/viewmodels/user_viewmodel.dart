@@ -32,6 +32,16 @@ class UserViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> loadSharedPref() async {
+    final preferences = await SharedPreferences.getInstance();
+    var onBoard = preferences.getBool(AppConstatnts.SP_SHOW_ON_BOARD);
+    var userData = preferences.getString(AppConstatnts.SP_USER_INFO);
+    if (userData != null) {
+      _displayedOnboard = onBoard ?? false;
+      _user = userModelFromJson(userData);
+    }
+  }
+
   setShowOnBaord(bool status) {
     _displayedOnboard = status;
     notifyListeners();
