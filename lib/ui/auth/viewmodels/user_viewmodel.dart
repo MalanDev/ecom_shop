@@ -1,5 +1,5 @@
 import 'package:ecom_shop/domain/models/user_login.dart';
-import 'package:ecom_shop/helper/constatnts.dart';
+import 'package:ecom_shop/config/constatnts.dart';
 import 'package:flutter/material.dart';
 import '../../../domain/models/user.dart';
 import '../../../domain/usecases/get_user_usecase.dart';
@@ -16,8 +16,11 @@ class UserViewModel extends ChangeNotifier {
   UserModel? _user;
   UserModel? get user => _user;
 
-  void logout() {
+  void logout() async {
+    final preferences = await SharedPreferences.getInstance();
     _user = null;
+    preferences.remove(AppConstatnts.SP_SHOW_ON_BOARD);
+    preferences.remove(AppConstatnts.SP_USER_INFO);
     notifyListeners();
   }
 
@@ -34,7 +37,7 @@ class UserViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> login(
+  Future<bool> login(
       String email, String password, int rememberMe, int systemUser) async {
     try {
       var userModel = UserLoginModel(
@@ -47,14 +50,17 @@ class UserViewModel extends ChangeNotifier {
 
       _user = await _getUserUseCase.login(userModel);
       if (_user != null) {
-        preferences.setBool(SP_SHOW_ON_BOARD, true);
-        preferences.setString(SP_USER_INFO, userModelToJson(_user!));
+        preferences.setBool(AppConstatnts.SP_SHOW_ON_BOARD, true);
+        preferences.setString(
+            AppConstatnts.SP_USER_INFO, userModelToJson(_user!));
       }
 
       notifyListeners();
+      return true;
     } catch (e) {
       // Handle error
       print('Failed to fetch user: $e');
+      return false;
     }
   }
 }
